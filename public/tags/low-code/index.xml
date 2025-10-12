@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Low-Code on Terminal</title>
+    <link>//localhost:1313/tags/low-code/</link>
+    <description>Recent content in Low-Code on Terminal</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 12 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/low-code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Behind the Build - Automated Blog Generator</title>
+      <link>//localhost:1313/posts/2025-10-12-behind-the-build-automated-blog-generator/</link>
+      <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/posts/2025-10-12-behind-the-build-automated-blog-generator/</guid>
+      <description>A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress — improving consistency, reducing cost, and maintaining brand quality at scale.</description>
+    </item>
+  </channel>
+</rss>

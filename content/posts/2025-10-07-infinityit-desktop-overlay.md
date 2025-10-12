@@ -1,5 +1,5 @@
 ---
-title: "InfinityIT Desktop Overlay"
+title: "Behind the Build - InfinityIT Desktop Overlay"
 date: 2025-10-07T00:00:00Z
 draft: false
 tags:
@@ -19,78 +19,90 @@ thumbnail: "path/to/your/thumbnail/image.jpg" # Replace with the actual path to 
 
 ---
 
-## InfinityIT Desktop Overlay
+## Behind the Build: InfinityIT Desktop Overlay
 
-### Project Overview
+### The Request
 
-The creation of the InfinityIT Desktop Overlay began when our managing director noticed a transparent overlay on a colleague's desktop. Inspired by its utility and aesthetics, he asked if we could implement a similar solution for our managed customers. The goal was to design an unobtrusive informational overlay that displayed critical details, such as hostname, company logo, and contact information, on Windows 10 and 11 desktops.
+The idea for this project began when our Managing Director at InfinityIT, saw a subtle desktop overlay while visiting another business. It was semi-transparent and displayed some basic information on the desktop background. When he returned, he asked if I could create something similar and deploy it across all of our managed customer endpoints.
 
-### Requirement Gathering
+### Gathering Requirements
 
-To ensure the project aligned with company and customer needs, I conducted thorough discussions with stakeholders. We identified key requirements:
+Before building anything, I needed to understand exactly what was expected. I met with the stakeholder and gathered the following requirements:
 
-- A semi-transparent overlay with no interactive functionality, designed to be completely click-through.
-- Essential content: hostname, InfinityIT logo, and contact details.
-- Deployment parameters included a fixed position in the bottom right corner of the desktop, resembling a watermark, and automatic reinstallation if it was disabled or removed.
+- Semi-transparent overlay
+    
+- Non-interactive and fully click-through
+    
+- Must display hostname, company logo, and contact information
+    
+- Must always appear in the bottom-right of the desktop
+    
+- Should be visually unobtrusive
+    
+- Must work on Windows 10 and 11
+    
+- Deployed and monitored using Datto RMM
+    
+- Should automatically reinstall and start again at logon if removed or stopped
+    
 
-### Initial Design Process
+### Version 1: The First Implementation
 
-I began the design phase by creating a mock-up in Canva. After several iterations and feedback sessions, we settled on a size of 400x200 pixels, utilizing company-branded fonts and the logo to ensure visual relevance.
+The initial version was built using C# with WPF in Visual Studio. For the visual design, I created a mockup in Canva using our company branding. I exported the design as a PNG with a transparent background and used C# to programmatically overlay it on the screen alongside the system hostname.
 
-### Development of the First Version
+Although the visual side worked well enough, deployment quickly became problematic. The application relied on the .NET runtime, which meant every target system had to be checked for compatibility. If the runtime was not installed, the deployment script needed to push and silently install it before proceeding.
 
-#### Code Implementation
+After compilation, the application generated dozens of files. These had to be packaged with an installer, which then needed to handle version removal, registry changes, and silent execution. The deployment process involved three separate batch scripts in Datto RMM: one for monitoring, one for installation, and one for removal. Debugging was difficult because batch scripting provided very little error handling.
 
-For the initial development, I opted to combine a transparent PNG with C# coding in Visual Studio and WPF. Though this approach initially seemed straightforward, I encountered challenges that required problem-solving and persistence to create a functional overlay.
+Despite internal testing and successful deployment across a number of systems, the setup was too fragile and resource-heavy for what was essentially a passive overlay.
 
-#### Deployment Challenges
+### Version 2: Rewriting for Simplicity and Performance
 
-During the deployment process, I encountered significant challenges due to the complexity of using C#. I wrote a batch script to verify whether the overlay was installed and to create a startup entry for automatic launch.
+Within a year, I decided to refactor the project entirely. There were too many inconsistencies during updates and monitoring. The original implementation consumed approximately 80MB of RAM for a task that should have required almost none. It also required Visual Studio and produced a large number of files. These issues made maintenance frustrating and time-consuming.
 
-However, complications emerged because the overlay relied on .NET runtimes installed on target systems. This necessitated additional checks and the potential need to push the runtime installer to other machines. Additionally, the multitude of files generated after compilation complicated the packaging process for deployment.
+I made a list of goals for the new version:
 
-To manage the installation effectively via Datto RMM, I created three batch scripts: 
-1. A monitoring script to ensure the overlay was installed and running.
-2. An installation script triggered by the monitoring component.
-3. A removal script.
+- Remove all .NET dependencies
+    
+- Reduce the memory footprint significantly
+    
+- Create a single, compact executable
+    
+- Avoid showing the application in Add/Remove Programs
+    
+- Improve script reliability and error handling
+    
+- Enable fast compilation and deployment
+    
+- Minimize the file size
+    
 
-### Testing and Feedback
+After some testing with different languages, I settled on Go for the application and PowerShell for the deployment and monitoring scripts. This decision simplified everything. I no longer needed Visual Studio or an installer. The application was just a single `.go` file with 346 lines of code, compiled into a static 3MB executable.
 
-Extensive testing was conducted on internal systems to identify and resolve any issues before the system-wide launch to our customers. This phase involved critical reflection on the functionality and usability of the overlay.
+### Technical Reflection
 
-### Transition to the Second Version
+Using Go required a shift in approach. There are no high-level GUI frameworks like WPF, so I used direct Windows API calls to draw on the screen. This method felt more transparent and aligned with what I needed. There were likely third-party libraries available, but I wanted to avoid external dependencies and keep full control over what the application was doing.
 
-Within the first year, inconsistencies in deployment and high resource consumption from the C# implementation drove my decision to refactor. The previous overlay used approximately 80 MB of RAM and required significant dependencies, which hindered efficiency.
+Go also allowed me to embed the PNG and font directly into the binary using a simple directive. This ensured that everything needed was contained in a single file.
 
-#### Key Objectives for Rebuild
+The final application used only around 3MB of RAM and worked across all tested versions of Windows 10 and 11. The compile time was nearly instant, and the file size stayed under 3.5MB, even with embedded assets.
 
-The goals for the new version included:
+### Simplified Deployment
 
-- Eliminating .NET requirements.
-- Reducing memory consumption substantially.
-- Creating a single executable without appearing in the add/remove software section.
-- Streamlining the installation process.
+Deployment became simple. Instead of installing dependencies or running complex installers, I just had to copy the executable to a specific folder and set a registry key to launch it at user login.
 
-#### New Technology Stack
+I replaced the old batch scripts with PowerShell to improve error handling. This change made it easier to detect problems and maintain consistency across installations.
 
-After exploring various options, I transitioned to using Go for the application along with PowerShell scripts for RMM tasks. This sought simplicity while allowing me to maintain control over the design and functionality.
+### Handling Updates
 
-### Development Insights
+Updating the overlay also required some thought. I explored version checks using command-line flags or resource files, but most methods felt unnecessarily complex. In the end, I used a simple file timestamp check. The PowerShell script would compare the installed file’s modified date with a known “current” version date. If the installed version was older, it would be replaced.
 
-Developing in Go required direct interaction with the Windows API rather than relying on bundled libraries. This allowed for a tailored overlay experience that could function seamlessly across various Windows versions. 
+To avoid conflicts when the new version was compiled and deployed on the same day as an existing installation, I set the update script to check against the next day’s date. This ensured that any overlays installed earlier on that day would still be updated properly during deployment.
 
-I benefited from the simplicity of embedding fonts and designs directly within the code, which streamlined the process considerably. The resulting executable was reduced to just 3 MB, and memory usage dropped dramatically to around 3 MB when running.
+### A Note on AI
 
-### Deployment Improvements
+My early experience with C# relied heavily on AI tools to help with syntax and structure. However, I quickly found myself stuck in what I call prompt purgatory. AI answers were often vague, generic, or incorrect. They offered surface-level help but failed to handle deeper integration problems.
 
-The switch to PowerShell scripts significantly improved efficiency. Simplifying the deployment process required only copying the executable to a designated location and modifying a single registry entry to enable startup. Additionally, error handling in PowerShell made debugging easier.
+Eventually I decided to stop prompting and start reading. By going back to documentation and working directly with the Windows API, I was able to build something smaller, faster, and much more maintainable. The time spent digging into official sources paid off in clarity and control.
 
-### Update Process
-
-For future updates, I implemented a straightforward version-checking methodology based on timestamps. By utilizing a date-based system in the PowerShell script, I ensured that any overwritten updates occurred seamlessly without unnecessary complexity.
-
-### Conclusion
-
-The InfinityIT Desktop Overlay project demonstrates the importance of adaptability and the continuous improvement of solutions. By refining the technology stack and deployment process, I created a more efficient and effective product that meets our customers’ needs while prioritizing simplicity and performance. This experience has also reinforced my commitment to ongoing learning and adaptation in a fast-paced technical landscape.
-
----
+AI is still useful to me, but I make sure to start with pen and paper. I sketch the idea, plan the structure, and use AI only when I need a quick reference or second opinion.

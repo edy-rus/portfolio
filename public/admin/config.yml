@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: edy-rus/portfolio
   branch: main # Branch to update (optional; defaults to master)
+  site_domain: https://tarbide.info
+  base_url: https://portfolio.tarbide.info
+  auth_endpoint: /api/auth
 media_folder: static/img
 public_folder: /img
 collections:
@@ -8,7 +12,7 @@ collections:
     label: 'Blog'
     folder: 'content/blog'
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    slug: '{{slug}}'
     editor:
       preview: false
     fields:
