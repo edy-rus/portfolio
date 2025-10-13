@@ -1,6 +1,7 @@
 ---
 title: "Behind the Build - Automated Blog Generator"
 date: 2025-10-12T00:00:00Z
+author: Edy Rustad
 draft: false
 tags:
   - Project
@@ -15,8 +16,8 @@ tags:
 categories:
   - Portfolio
   - Technology
-summary: "A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress — improving consistency, reducing cost, and maintaining brand quality at scale."
-thumbnail: "path/to/your/thumbnail/image.jpg" # Replace with the actual image path
+summary: "A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress. Improving consistency, reducing cost, and maintaining brand quality at scale."
+thumbnail: "images/cover.png" # Replace with the actual image path
 ---
 
 
@@ -30,14 +31,16 @@ The process was entirely manual. I would write the content, clean it up using AI
 
 Each post took about two hours of focused work. Since my job involves everything from technical support to programming, automation, and client-facing roles, it became harder to justify that time every week. Some weeks the blog simply did not happen.
 
+---
 ## The Problem
 
-The issue was not the quality. The posts were decent, but the effort-to-output ratio was too high. From a business point of view, it was costing us around $250 worth of time per blog post, assuming my time was billed at internal rate.
+The issue was not the quality. The posts were decent, but the effort-to-output ratio was too high. From a business point of view, it was costing us an average of $90 per blog post.
 
 There was also inconsistency. Without a regular schedule, the SEO value was reduced. The manual process of using early AI tools was clunky and slow. I would often have to prompt, wait, review, and then re-prompt again. Since I am not an editor by trade, the review process felt like a constant uphill battle.
 
 At that point, it became obvious that the whole thing needed to be automated.
 
+---
 ## Building the System
 
 I built a full workflow using **n8n** and **OpenAI's API**, directly integrated with our **WordPress site**.
@@ -52,12 +55,14 @@ The featured image is generated using **DALL·E 2**, with a combination of a fix
 
 Once the post and image are ready, they are sent as a **draft** to WordPress for review. Notifications are sent to our Microsoft Teams channel with status updates or any error messages.
 
+---
 ## Challenges
 
 Although n8n is a low-code platform, not everything was drag and drop. I had to RTFM more than once, especially for handling raw HTTP requests, custom headers, and JSON payloads.
 
 There were a few edge cases around image formatting, prompt tuning, and post validation. But once everything was wired up, the system became very reliable.
 
+---
 ## Results
 
 The automation has been running since March. In that time, it has created two posts per week, with featured images, consistent tone, and zero manual prompting. The only human involvement now is the final approval step before publishing.

@@ -10,16 +10,16 @@
     <atom:link href="//localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Behind the Build - Automated Blog Generator</title>
-      <link>//localhost:1313/projects/2025-10-12-behind-the-build-automated-blog-generator/</link>
+      <link>//localhost:1313/projects/automated-blog-generator/</link>
       <pubDate>Sun, 12 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/projects/2025-10-12-behind-the-build-automated-blog-generator/</guid>
-      <description>A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress — improving consistency, reducing cost, and maintaining brand quality at scale.</description>
+      <guid>//localhost:1313/projects/automated-blog-generator/</guid>
+      <description>A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress. Improving consistency, reducing cost, and maintaining brand quality at scale.</description>
     </item>
     <item>
       <title>Behind the Build - InfinityIT Desktop Overlay</title>
-      <link>//localhost:1313/projects/2025-10-07-infinityit-desktop-overlay/</link>
+      <link>//localhost:1313/projects/infinityit-desktop-overlay/</link>
       <pubDate>Tue, 07 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/projects/2025-10-07-infinityit-desktop-overlay/</guid>
+      <guid>//localhost:1313/projects/infinityit-desktop-overlay/</guid>
       <description>A detailed account of the development process behind the InfinityIT Desktop Overlay, focusing on design, implementation, and iterative improvements.</description>
     </item>
   </channel>

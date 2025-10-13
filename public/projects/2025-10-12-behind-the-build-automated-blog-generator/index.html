@@ -6,7 +6,7 @@
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress — improving consistency, reducing cost, and maintaining brand quality at scale." />
+<meta name="description" content="A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress. Improving consistency, reducing cost, and maintaining brand quality at scale." />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
@@ -16,6 +16,9 @@
 
 
 
+
+  
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.d2d4ff1b4b8ee02b92501e3b0e66bb6b44404015afb49bef6d1dad00fc7eaf34.css">
 
   
   <link rel="stylesheet" href="//localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
@@ -34,9 +37,6 @@
 
   
   <link rel="stylesheet" href="//localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
-
-  
-  <link rel="stylesheet" href="//localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
 
   
   <link rel="stylesheet" href="//localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
@@ -71,14 +71,14 @@
   
     <meta name="twitter:site" content="" />
   
-    <meta name="twitter:creator" content="" />
+    <meta name="twitter:creator" content="Edy Rustad" />
 
 
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Behind the Build - Automated Blog Generator">
-<meta property="og:description" content="A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress — improving consistency, reducing cost, and maintaining brand quality at scale." />
+<meta property="og:description" content="A detailed breakdown of how I automated InfinityIT’s blog publishing workflow using n8n, OpenAI, and WordPress. Improving consistency, reducing cost, and maintaining brand quality at scale." />
 <meta property="og:url" content="//localhost:1313/projects/2025-10-12-behind-the-build-automated-blog-generator/" />
 <meta property="og:site_name" content="Edy Rustad" />
 
@@ -109,7 +109,7 @@
 <body>
 
 
-<div class="container">
+<div class="container center">
 
   <header class="header">
   <div class="header__inner">
@@ -171,57 +171,38 @@
   <h1 class="post-title">
     <a href="//localhost:1313/projects/2025-10-12-behind-the-build-automated-blog-generator/">Behind the Build - Automated Blog Generator</a>
   </h1>
-  <div class="post-meta"><time class="post-date">2025-10-12</time></div>
+  <div class="post-meta"><time class="post-date">2025-10-12</time><span class="post-author">Edy Rustad</span></div>
 
-  
-    <span class="post-tags">
-      
-      #<a href="//localhost:1313/tags/project/">Project</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/automation/">Automation</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/development/">Development</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/low-code/">Low-Code</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/llm/">LLM</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/n8n/">n8n</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/powershell/">PowerShell</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/openai/">OpenAI</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/wordpress/">WordPress</a>&nbsp;
-      
-    </span>
-  
   
 
 
   
 
   <div class="post-content"><div>
-        <h1 id="behind-the-build-automated-blog-generator">Behind the Build: Automated Blog Generator<a href="#behind-the-build-automated-blog-generator" class="hanchor" ariaLabel="Anchor">#</a> </h1>
-<h2 id="the-beginning">The Beginning<a href="#the-beginning" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+        
+<h2 id="the-beginning">The Beginning</h2>
 <p>When I started at InfinityIT, there was no regular blog content. The director wanted to improve our SEO footprint while also giving current and potential clients something useful to read. I began writing weekly posts, usually around 500 words, based on either news I came across or topics suggested by the director.</p>
 <p>The process was entirely manual. I would write the content, clean it up using AI tools, then move on to WordPress where I had to do all the SEO formatting, tagging, and Yoast tweaking. On top of that, I needed to generate a featured image using Leonardo.ai and make sure the layout worked well on the site.</p>
 <p>Each post took about two hours of focused work. Since my job involves everything from technical support to programming, automation, and client-facing roles, it became harder to justify that time every week. Some weeks the blog simply did not happen.</p>
-<h2 id="the-problem">The Problem<a href="#the-problem" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<p>The issue was not the quality. The posts were decent, but the effort-to-output ratio was too high. From a business point of view, it was costing us around $250 worth of time per blog post, assuming my time was billed at internal rate.</p>
+<hr>
+<h2 id="the-problem">The Problem</h2>
+<p>The issue was not the quality. The posts were decent, but the effort-to-output ratio was too high. From a business point of view, it was costing us an average of $90 per blog post.</p>
 <p>There was also inconsistency. Without a regular schedule, the SEO value was reduced. The manual process of using early AI tools was clunky and slow. I would often have to prompt, wait, review, and then re-prompt again. Since I am not an editor by trade, the review process felt like a constant uphill battle.</p>
 <p>At that point, it became obvious that the whole thing needed to be automated.</p>
-<h2 id="building-the-system">Building the System<a href="#building-the-system" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<hr>
+<h2 id="building-the-system">Building the System</h2>
 <p>I built a full workflow using <strong>n8n</strong> and <strong>OpenAI&rsquo;s API</strong>, directly integrated with our <strong>WordPress site</strong>.</p>
 <p>The system runs twice a week as part of a broader daily automation pipeline. On Tuesdays and Thursdays, it triggers the blog workflow. It selects a topic, generates a post using ChatGPT, and formats it to match our structure and tone.</p>
 <p>To maintain brand quality without resorting to high-cost LLMs, I built a two-step pipeline using <strong>GPT-4o Mini</strong> for content generation and <strong>DALL·E 2</strong> for image creation. This kept the API usage cost extremely low.</p>
 <p>Instead of relying on a single large prompt sent to the latest high-parameter models, the system generates a blog post using GPT-4o Mini and then sends it to a second validation step. A separate AI agent checks the output against a set of brand and tone guidelines, and assigns it a score. If the score is too low, the content is rejected and regenerated with the included critique. This allowed me to use smaller models without compromising output quality.</p>
 <p>The featured image is generated using <strong>DALL·E 2</strong>, with a combination of a fixed style prompt and content-aware context. It avoids text so it will not conflict with the semi-transparent overlay text used on our website. Though the person who approves and publishes posts sometimes swaps out the image, they occasionally ignore the no-text rule, which creates the very conflict I designed the AI to avoid.</p>
 <p>Once the post and image are ready, they are sent as a <strong>draft</strong> to WordPress for review. Notifications are sent to our Microsoft Teams channel with status updates or any error messages.</p>
-<h2 id="challenges">Challenges<a href="#challenges" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<hr>
+<h2 id="challenges">Challenges</h2>
 <p>Although n8n is a low-code platform, not everything was drag and drop. I had to RTFM more than once, especially for handling raw HTTP requests, custom headers, and JSON payloads.</p>
 <p>There were a few edge cases around image formatting, prompt tuning, and post validation. But once everything was wired up, the system became very reliable.</p>
-<h2 id="results">Results<a href="#results" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<hr>
+<h2 id="results">Results</h2>
 <p>The automation has been running since March. In that time, it has created two posts per week, with featured images, consistent tone, and zero manual prompting. The only human involvement now is the final approval step before publishing.</p>
 <p>Because I used <strong>GPT-4o Mini</strong> and <strong>DALL·E 2</strong>, and avoided complex single-shot prompts to expensive models, the operating cost has remained incredibly low.</p>
 <p>We loaded $5 USD onto the OpenAI account when it launched. Six months later, we still have $3.50 remaining.</p>

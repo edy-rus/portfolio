@@ -51,7 +51,7 @@ A lightweight desktop overlay for Windows machines displaying company-specific b
 - Full automation via PowerShell and Datto RMM  
 - Resilient update mechanism using timestamp-based checks
 
-See full write-up: [Behind the Build: InfinityIT Desktop Overlay]({{< relref "projects/2025-10-07-infinityit-desktop-overlay/" >}})
+See full write-up: [Behind the Build: InfinityIT Desktop Overlay]({{< relref "projects/infinityit-desktop-overlay/" >}})
 
 ### **Automated Blog Generator**
 
@@ -62,7 +62,7 @@ A fully automated content pipeline generating biweekly blog drafts with brand-al
 - MS Teams integration for completion alerts and error reporting
 - Less than $1/month in LLM costs after 6+ months of operation
 
-See full write-up: [Behind the Build: Automated Blog Generator]({{< relref "projects/2025-10-12-behind-the-build-automated-blog-generator/" >}})
+See full write-up: [Behind the Build: Automated Blog Generator]({{< relref "projects/automated-blog-generator/" >}})
 
 ---
 ## Education

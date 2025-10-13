@@ -1,0 +1,36 @@
+{{ define "main" }}
+  {{ with .Content }}
+    <div class="index-content">
+      {{ . }}
+    </div>
+  {{ end }}
+  <div class="posts">
+    {{ range .Paginator.Pages }}
+      <article class="post on-list">
+        <h2 class="post-title">
+          <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+        </h2>
+
+        {{ partial "cover.html" . }}
+
+        <div class="post-content">
+          {{ if .Params.showFullContent }}
+            {{ .Content }}
+          {{ else if .Description }}
+            <p>{{ .Description | markdownify }}</p>
+          {{ else }}
+            {{ .Summary }}
+          {{ end }}
+        </div>
+
+        {{ if not .Params.showFullContent }}
+           <div>
+            <a class="read-more button inline" href="{{ .RelPermalink }}">[{{ $.Site.Params.ReadMore }}]</a>
+          </div>
+        {{ end }}
+      </article>
+    {{ end }}
+
+    {{ partial "pagination.html" . }}
+  </div>
+{{ end }}

@@ -5,7 +5,7 @@
     <loc>//localhost:1313/tags/automation/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/projects/2025-10-12-behind-the-build-automated-blog-generator/</loc>
+    <loc>//localhost:1313/projects/automated-blog-generator/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/categories/</loc>
@@ -50,7 +50,7 @@
     <loc>//localhost:1313/tags/wordpress/</loc>
     <lastmod>2025-10-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/projects/2025-10-07-infinityit-desktop-overlay/</loc>
+    <loc>//localhost:1313/projects/infinityit-desktop-overlay/</loc>
     <lastmod>2025-10-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/tags/c%23/</loc>
@@ -63,8 +63,6 @@
     <lastmod>2025-10-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/scqa/blog-generator/</loc>
-  </url><url>
-    <loc>//localhost:1313/tags/data-science/</loc>
   </url><url>
     <loc>//localhost:1313/cv/</loc>
   </url><url>

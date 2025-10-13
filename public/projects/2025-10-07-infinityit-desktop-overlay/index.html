@@ -18,6 +18,9 @@
 
 
   
+  <link rel="stylesheet" href="//localhost:1313/css/main.min.d2d4ff1b4b8ee02b92501e3b0e66bb6b44404015afb49bef6d1dad00fc7eaf34.css">
+
+  
   <link rel="stylesheet" href="//localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
 
   
@@ -34,9 +37,6 @@
 
   
   <link rel="stylesheet" href="//localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
-
-  
-  <link rel="stylesheet" href="//localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
 
   
   <link rel="stylesheet" href="//localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
@@ -109,7 +109,7 @@
 <body>
 
 
-<div class="container">
+<div class="container center">
 
   <header class="header">
   <div class="header__inner">
@@ -174,33 +174,16 @@
   <div class="post-meta"><time class="post-date">2025-10-07</time></div>
 
   
-    <span class="post-tags">
-      
-      #<a href="//localhost:1313/tags/project/">Project</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/development/">Development</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/software-engineering/">Software Engineering</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/go/">Go</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/c#/">C#</a>&nbsp;
-      
-      #<a href="//localhost:1313/tags/powershell/">PowerShell</a>&nbsp;
-      
-    </span>
-  
-  
 
 
   
 
   <div class="post-content"><div>
-        <hr>
-<h2 id="behind-the-build-infinityit-desktop-overlay">Behind the Build: InfinityIT Desktop Overlay<a href="#behind-the-build-infinityit-desktop-overlay" class="hanchor" ariaLabel="Anchor">#</a> </h2>
-<h3 id="the-request">The Request<a href="#the-request" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+        
+<h2 id="the-request">The Request</h2>
 <p>The idea for this project began when our Managing Director at InfinityIT, saw a subtle desktop overlay while visiting another business. It was semi-transparent and displayed some basic information on the desktop background. When he returned, he asked if I could create something similar and deploy it across all of our managed customer endpoints.</p>
-<h3 id="gathering-requirements">Gathering Requirements<a href="#gathering-requirements" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<hr>
+<h2 id="gathering-requirements">Gathering Requirements</h2>
 <p>Before building anything, I needed to understand exactly what was expected. I met with the stakeholder and gathered the following requirements:</p>
 <ul>
 <li>
@@ -228,12 +211,14 @@
 <p>Should automatically reinstall and start again at logon if removed or stopped</p>
 </li>
 </ul>
-<h3 id="version-1-the-first-implementation">Version 1: The First Implementation<a href="#version-1-the-first-implementation" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<hr>
+<h2 id="version-1-the-first-implementation">Version 1: The First Implementation</h2>
 <p>The initial version was built using C# with WPF in Visual Studio. For the visual design, I created a mockup in Canva using our company branding. I exported the design as a PNG with a transparent background and used C# to programmatically overlay it on the screen alongside the system hostname.</p>
 <p>Although the visual side worked well enough, deployment quickly became problematic. The application relied on the .NET runtime, which meant every target system had to be checked for compatibility. If the runtime was not installed, the deployment script needed to push and silently install it before proceeding.</p>
 <p>After compilation, the application generated dozens of files. These had to be packaged with an installer, which then needed to handle version removal, registry changes, and silent execution. The deployment process involved three separate batch scripts in Datto RMM: one for monitoring, one for installation, and one for removal. Debugging was difficult because batch scripting provided very little error handling.</p>
 <p>Despite internal testing and successful deployment across a number of systems, the setup was too fragile and resource-heavy for what was essentially a passive overlay.</p>
-<h3 id="version-2-rewriting-for-simplicity-and-performance">Version 2: Rewriting for Simplicity and Performance<a href="#version-2-rewriting-for-simplicity-and-performance" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<hr>
+<h2 id="version-2-rewriting-for-simplicity-and-performance">Version 2: Rewriting for Simplicity and Performance</h2>
 <p>Within a year, I decided to refactor the project entirely. There were too many inconsistencies during updates and monitoring. The original implementation consumed approximately 80MB of RAM for a task that should have required almost none. It also required Visual Studio and produced a large number of files. These issues made maintenance frustrating and time-consuming.</p>
 <p>I made a list of goals for the new version:</p>
 <ul>
@@ -260,17 +245,21 @@
 </li>
 </ul>
 <p>After some testing with different languages, I settled on Go for the application and PowerShell for the deployment and monitoring scripts. This decision simplified everything. I no longer needed Visual Studio or an installer. The application was just a single <code>.go</code> file with 346 lines of code, compiled into a static 3MB executable.</p>
-<h3 id="technical-reflection">Technical Reflection<a href="#technical-reflection" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<hr>
+<h2 id="technical-reflection">Technical Reflection</h2>
 <p>Using Go required a shift in approach. There are no high-level GUI frameworks like WPF, so I used direct Windows API calls to draw on the screen. This method felt more transparent and aligned with what I needed. There were likely third-party libraries available, but I wanted to avoid external dependencies and keep full control over what the application was doing.</p>
 <p>Go also allowed me to embed the PNG and font directly into the binary using a simple directive. This ensured that everything needed was contained in a single file.</p>
 <p>The final application used only around 3MB of RAM and worked across all tested versions of Windows 10 and 11. The compile time was nearly instant, and the file size stayed under 3.5MB, even with embedded assets.</p>
-<h3 id="simplified-deployment">Simplified Deployment<a href="#simplified-deployment" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<hr>
+<h2 id="simplified-deployment">Simplified Deployment</h2>
 <p>Deployment became simple. Instead of installing dependencies or running complex installers, I just had to copy the executable to a specific folder and set a registry key to launch it at user login.</p>
 <p>I replaced the old batch scripts with PowerShell to improve error handling. This change made it easier to detect problems and maintain consistency across installations.</p>
-<h3 id="handling-updates">Handling Updates<a href="#handling-updates" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<hr>
+<h2 id="handling-updates">Handling Updates</h2>
 <p>Updating the overlay also required some thought. I explored version checks using command-line flags or resource files, but most methods felt unnecessarily complex. In the end, I used a simple file timestamp check. The PowerShell script would compare the installed file’s modified date with a known “current” version date. If the installed version was older, it would be replaced.</p>
 <p>To avoid conflicts when the new version was compiled and deployed on the same day as an existing installation, I set the update script to check against the next day’s date. This ensured that any overlays installed earlier on that day would still be updated properly during deployment.</p>
-<h3 id="a-note-on-ai">A Note on AI<a href="#a-note-on-ai" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<hr>
+<h2 id="a-note-on-ai">A Note on AI</h2>
 <p>My early experience with C# relied heavily on AI tools to help with syntax and structure. However, I quickly found myself stuck in what I call prompt purgatory. AI answers were often vague, generic, or incorrect. They offered surface-level help but failed to handle deeper integration problems.</p>
 <p>Eventually I decided to stop prompting and start reading. By going back to documentation and working directly with the Windows API, I was able to build something smaller, faster, and much more maintainable. The time spent digging into official sources paid off in clarity and control.</p>
 <p>AI is still useful to me, but I make sure to start with pen and paper. I sketch the idea, plan the structure, and use AI only when I need a quick reference or second opinion.</p>
@@ -286,7 +275,7 @@
   </div>
   <div class="pagination__buttons">
     
-      <a href="//localhost:1313/projects/2025-10-12-behind-the-build-automated-blog-generator/" class="button inline prev">
+      <a href="//localhost:1313/projects/blog-generator/2025-10-12-behind-the-build-automated-blog-generator/" class="button inline prev">
         &lt; [<span class="button__text">Behind the Build - Automated Blog Generator</span>]
       </a>
     
