@@ -12,7 +12,7 @@ pagination.pagerSize = 5
 [params]
   # dir name of your main content (default is `content/posts`).
   # the list of set content will show up on your index page (baseurl).
-  contentTypeName = "posts"
+  contentTypeName = "projects"
 
   # if you set this to 0, only submenu trigger will be visible
   showMenuItems = 2
@@ -74,13 +74,13 @@ pagination.pagerSize = 5
 [languages]
   [languages.en]
     languageName = "English"
-    title = "Terminal"
+    title = "Edy Rustad"
 
     [languages.en.params]
-      subtitle = "A simple, retro theme for Hugo"
+      subtitle = "A site to showcase a few projects"
       owner = ""
       keywords = ""
-      copyright = ""
+      copyright = "Edward Rustad"
       menuMore = "Show more"
       readMore = "Read more"
       readOtherPosts = "Read other posts"
@@ -92,16 +92,16 @@ pagination.pagerSize = 5
       words = "words"
 
       [languages.en.params.logo]
-        logoText = "Terminal"
+        logoText = "EDY RUSTAD"
         logoHomeLink = "/"
 
       [languages.en.menu]
         [[languages.en.menu.main]]
-          identifier = "about"
-          name = "About"
-          url = "/about"
+          identifier = "cv"
+          name = "CV"
+          url = "/cv"
         [[languages.en.menu.main]]
-          identifier = "showcase"
-          name = "Showcase"
-          url = "/showcase"
+          identifier = "projects"
+          name = "Projects"
+          url = "/projects"
 

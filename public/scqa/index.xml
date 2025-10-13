@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scqas on Edy Rustad</title>
+    <link>//localhost:1313/scqa/</link>
+    <description>Recent content in Scqas on Edy Rustad</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="//localhost:1313/scqa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automated Blog Generator</title>
+      <link>//localhost:1313/scqa/iit-overlay/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/scqa/iit-overlay/</guid>
+      <description>&lt;h2 id=&#34;project-summary-automated-blog-generator&#34;&gt;Project Summary: Automated Blog Generator&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Situation:&lt;/strong&gt;&lt;br&gt;&#xA;To improve SEO and provide value to customers, I was tasked with writing regular blog posts for InfinityIT. The expectation was one post per week, formatted for WordPress with proper SEO tags, featured images, and brand alignment. All posts were created manually, from content to image to publication.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Complication:&lt;/strong&gt;&lt;br&gt;&#xA;Due to the wide scope of my role, it became increasingly difficult to dedicate the two hours of focused time each week required to complete a post. The process of prompting early AI tools, reviewing results, generating images, and formatting for WordPress was time-consuming. Inconsistent publishing reduced the blog&amp;rsquo;s impact, and the internal cost of each post was high.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

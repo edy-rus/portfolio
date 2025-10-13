@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Software Engineering on Terminal</title>
+    <title>Software Engineering on Edy Rustad</title>
     <link>//localhost:1313/tags/software-engineering/</link>
-    <description>Recent content in Software Engineering on Terminal</description>
+    <description>Recent content in Software Engineering on Edy Rustad</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Tue, 07 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/tags/software-engineering/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Behind the Build - InfinityIT Desktop Overlay</title>
-      <link>//localhost:1313/posts/2025-10-07-infinityit-desktop-overlay/</link>
+      <link>//localhost:1313/projects/2025-10-07-infinityit-desktop-overlay/</link>
       <pubDate>Tue, 07 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>//localhost:1313/posts/2025-10-07-infinityit-desktop-overlay/</guid>
+      <guid>//localhost:1313/projects/2025-10-07-infinityit-desktop-overlay/</guid>
       <description>A detailed account of the development process behind the InfinityIT Desktop Overlay, focusing on design, implementation, and iterative improvements.</description>
     </item>
   </channel>

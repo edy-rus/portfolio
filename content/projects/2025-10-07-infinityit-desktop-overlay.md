@@ -4,7 +4,6 @@ date: 2025-10-07T00:00:00Z
 draft: false
 tags:
   - Project
-  - Data Science
   - Development
   - Software Engineering
   - Go
